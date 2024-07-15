@@ -70,7 +70,7 @@ const EditProperty = () => {
       <Nav />
       <div className="container mx-auto">
         <h1 className="text-4xl font-bold mt-8 text-center">Edit Property</h1>
-        <div className="mt-8">
+        <div className="mt-8 mx-2">
           <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
             <div className="mb-4">
               <label className="block text-gray-700">Title</label>
