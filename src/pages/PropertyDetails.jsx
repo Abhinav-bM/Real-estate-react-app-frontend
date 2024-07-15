@@ -48,7 +48,9 @@ const PropertyDetails = () => {
 
       <div className="container mx-auto px-4">
         {!property ? (
-          <p>Loading...</p>
+          <div className="flex items-center justify-center min-h-screen">
+          <p className="text-lg">Loading...</p>
+        </div>
         ) : (
           <div className="max-w-4xl mx-auto mt-8 bg-white rounded-lg shadow-md overflow-hidden">
             <div className="md:flex">
