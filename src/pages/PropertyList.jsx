@@ -14,18 +14,22 @@ const PropertyList = () => {
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [filterByPrice, setFilterByPrice] = useState(null);
   const [showFiltersOnTop, setShowFiltersOnTop] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (user) {
+      setLoading(true);
       if (user.role === "agent") {
         axios
           .get(`/api/properties/agent`)
           .then((response) => {
             dispatch(setProperties(response.data));
             setFilteredProperties(response.data);
+            setLoading(false);
           })
           .catch((error) => {
             console.error("Error fetching properties:", error);
+            setLoading(false);
           });
       } else {
         axios
@@ -33,9 +37,11 @@ const PropertyList = () => {
           .then((response) => {
             dispatch(setProperties(response.data));
             setFilteredProperties(response.data);
+            setLoading(false);
           })
           .catch((error) => {
             console.error("Error fetching properties:", error);
+            setLoading(false);
           });
       }
     }
@@ -85,7 +91,7 @@ const PropertyList = () => {
     navigate(`/properties/${id}`);
   };
 
-  if (!user) {
+  if (!user || loading) {
     return (
       <>
         <Nav />
